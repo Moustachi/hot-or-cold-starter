@@ -32,34 +32,58 @@ function resetVar() {
 //--- # is for id's and . is for classes --//
 
 
+$("#guessButton").click(function(){
+			//counter keeps track of how many guesses
+			counter();
+			//appendGuess displays the previous numbers
+			//used to guess
+			appendGuess();
+			//user conveniency: userGuess is focused
+			//and is reset every time button is clicked
+			$("#userGuess").focus();
+			$("#userGuess").val("");
+	});
+
 $(document).ready(function(){
 
+	   $(document).keypress(function(e) {
+        if (e.keyCode == 13) {
+        	event.preventDefault();
+        	counter();
+        	appendGuess();
+        	$("#userGuess").focus();
+			$("#userGuess").val("");
+         	console.log("something happened");
+        }
+    });
 	//When the page loads, a number is generated
 	//and stored in randomNumber variable
 	numberGenerator();
-
+	$("#userGuess").focus();
 	//guess button function//
 	$("#guessButton").click(function(){
 			//counter keeps track of how many guesses
 			counter();
 			//appendGuess displays the previous numbers
 			//used to guess
-			appendGuess(); 
+			appendGuess();
+			//user conveniency: userGuess is focused
+			//and is reset every time button is clicked
+			$("#userGuess").focus();
+			$("#userGuess").val("");
 	});
 
 	//new game button//
 	$(".new").click(function(){
 			//regenerate a new number//
 			numberGenerator();
-			//clear the #userGuess, #count, and #guessList
+			//clear the #userGuess, #count, and #guessList//
 			resetVar();
-
 	});
 
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
-
   	});
 
   	/*--- Hide information modal box ---*/
