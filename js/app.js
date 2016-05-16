@@ -1,17 +1,40 @@
-// randomNumber is the number generator. .random
-// generates a number between 0 and 1 to but not
-// including 1, and multiplied that by 100 and +1
-// so we can be able to generate the number 100.
-// .floor finally takes the sum and roungs it down
-// to the nearest integer.
-var randomNumber = Math.floor((Math.random()*100)+1);
+//Random Number Generator//
+function numberGenerator() {
+
+	var randomNumber = Math.floor((Math.random()*100)+1);
+	console.log("random number: "+randomNumber);
+};
+
+//Counter Function//
+function counter(){
+	//stores #count's string as a integer in a var//
+	var integer = parseInt($("#count").text()) 
+	//adds 1 to that var (named 'integer')//
+	integer += 1
+	//replace #count's text with integer var//
+	$("#count").text(integer);
+	//print #counts string in the console//
+	console.log($("#count").text());
+};
+
+//--- # is for id's and . is for classes --//
 
 
 $(document).ready(function(){
 
-	randomNumber;
-	console.log(randomNumber);
+	numberGenerator();
 
+	//guess button function//
+	$("#guessButton").click(function(){
+			console.log("clicked")
+			counter();
+
+	});
+
+	//new game button//
+	$(".new").click(function(){
+			location.reload();
+	});
 
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
