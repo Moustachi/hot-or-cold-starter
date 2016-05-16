@@ -22,6 +22,13 @@ function appendGuess(){
 	$("#guessList").append("<li>" + input + "</li>");
 };
 
+//Reset Variables//
+function resetVar() {
+	$("#userGuess").val("");
+	$("#count").text("0");
+	$("#guessList").empty();
+};
+
 //--- # is for id's and . is for classes --//
 
 
@@ -42,8 +49,11 @@ $(document).ready(function(){
 
 	//new game button//
 	$(".new").click(function(){
-			//instead of reloading the page, regenerate a new number//
+			//regenerate a new number//
 			numberGenerator();
+			//clear the #userGuess, #count, and #guessList
+			resetVar();
+
 	});
 
 	/*--- Display information modal box ---*/
