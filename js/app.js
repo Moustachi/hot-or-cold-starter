@@ -16,16 +16,28 @@ function counter(){
 	console.log("Guess button clicked: "+$("#count").text()+" times.");
 };
 
+//Append Guess Function//
+function appendGuess(){
+	var input = $("#userGuess").val();
+	$("#guessList").append("<li>" + input + "</li>");
+};
+
 //--- # is for id's and . is for classes --//
 
 
 $(document).ready(function(){
 
+	//When the page loads, a number is generated
+	//and stored in randomNumber variable
 	numberGenerator();
 
 	//guess button function//
 	$("#guessButton").click(function(){
+			//counter keeps track of how many guesses
 			counter();
+			//appendGuess displays the previous numbers
+			//used to guess
+			appendGuess(); 
 	});
 
 	//new game button//
