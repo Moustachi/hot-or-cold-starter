@@ -1,8 +1,7 @@
 //Random Number Generator//
 function numberGenerator() {
-
-	var randomNumber = Math.floor((Math.random()*100)+1);
-	console.log("random number: "+randomNumber);
+	randomNumber = Math.floor((Math.random()*100)+1);
+	console.log("random number: " + randomNumber);
 };
 
 //Counter Function//
@@ -14,7 +13,7 @@ function counter(){
 	//replace #count's text with integer var//
 	$("#count").text(integer);
 	//print #counts string in the console//
-	console.log($("#count").text());
+	console.log("Guess button clicked: "+$("#count").text()+" times.");
 };
 
 //--- # is for id's and . is for classes --//
@@ -26,14 +25,13 @@ $(document).ready(function(){
 
 	//guess button function//
 	$("#guessButton").click(function(){
-			console.log("clicked")
 			counter();
-
 	});
 
 	//new game button//
 	$(".new").click(function(){
-			location.reload();
+			//instead of reloading the page, regenerate a new number//
+			numberGenerator();
 	});
 
 	/*--- Display information modal box ---*/
