@@ -1,6 +1,6 @@
 //Random Number Generator//
 function numberGenerator() {
-	randomNumber = Math.floor((Math.random()*100)+1);
+	randomNumber = Math.floor((Math.random()*100)+1)
 	console.log("random number: " + randomNumber);
 };
 
@@ -12,8 +12,6 @@ function counter(){
 	integer += 1
 	//replace #count's text with integer var//
 	$("#count").text(integer);
-	//print #counts string in the console//
-	console.log("Guess button clicked: "+$("#count").text()+" times.");
 };
 
 //Append Guess Function//
@@ -27,41 +25,56 @@ function resetVar() {
 	$("#userGuess").val("");
 	$("#count").text("0");
 	$("#guessList").empty();
+	$("#feedback").text("Make your Guess!");
 };
+
+function evaluate() {
+		input = $("#userGuess").val();
+
+		if (input == randomNumber){
+			$("#feedback").text("Winner winner, chicken dinner!");
+		}
+		//if the initial statement is false, then this else if
+		//checks to see if the integral value of randomNumber - input
+		//is less than 10.
+		else if (Math.abs(randomNumber - input) < 10){
+			$("#feedback").text("Hot!");
+		}
+		else if (Math.abs(randomNumber - input) < 20 && Math.abs(randomNumber - input) > 9){
+			$("#feedback").text("Warmer...");	
+		}
+		else if(Math.abs(randomNumber - input) < 30 && Math.abs(randomNumber - input) > 19){
+			$("#feedback").text("Warm.");
+		}
+		else {
+			$("#feedback").text("Cold.");
+		}
+};
+
+//GLOBAL-VARIABLES//
+var input = $("#userGuess").val();
 
 //--- # is for id's and . is for classes --//
 
-
-$("#guessButton").click(function(){
-			//counter keeps track of how many guesses
-			counter();
-			//appendGuess displays the previous numbers
-			//used to guess
-			appendGuess();
-			//user conveniency: userGuess is focused
-			//and is reset every time button is clicked
-			$("#userGuess").focus();
-			$("#userGuess").val("");
-	});
-
 $(document).ready(function(){
 
-	   $(document).keypress(function(e) {
-        if (e.keyCode == 13) {
-        	event.preventDefault();
-        	counter();
-        	appendGuess();
-        	$("#userGuess").focus();
-			$("#userGuess").val("");
-         	console.log("something happened");
-        }
-    });
-	//When the page loads, a number is generated
-	//and stored in randomNumber variable
 	numberGenerator();
 	$("#userGuess").focus();
+
+	$(document).keypress(function(e) {
+      if (e.keyCode == 13) {
+      event.preventDefault();
+      evaluate();
+      counter();
+      appendGuess();
+      $("#userGuess").focus();
+	  $("#userGuess").val("");
+      };
+    });
+
 	//guess button function//
 	$("#guessButton").click(function(){
+			evaluate();
 			//counter keeps track of how many guesses
 			counter();
 			//appendGuess displays the previous numbers
@@ -79,6 +92,7 @@ $(document).ready(function(){
 			numberGenerator();
 			//clear the #userGuess, #count, and #guessList//
 			resetVar();
+			$("#userGuess").focus();
 	});
 
 	/*--- Display information modal box ---*/
